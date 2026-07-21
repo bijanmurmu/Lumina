@@ -1,0 +1,12 @@
+{
+  "ID": "f5a9b1c0-3e21-4f8a-9c7d-e6b3b5a1f2e9",
+  "ActionKeyword": "lumina",
+  "Name": "Lumina",
+  "Description": "Change your wallpaper, theme, and accent color instantly.",
+  "Author": "bijanmurmu",
+  "Version": "1.0.0",
+  "Language": "python",
+  "Website": "https://github.com/bijanmurmu",
+  "ExecuteFileName": "main.py",
+  "IcoPath": "Images\\app.png"
+}
