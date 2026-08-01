@@ -28,7 +28,7 @@ namespace LuminaAnimator
         [DllImport("user32.dll", SetLastError = true)]
         public static extern IntPtr SetParent(IntPtr hWndChild, IntPtr hWndNewParent);
 
-        [DllImport("user32.dll", SetLastError = true)]
+        [DllImport("user32.dll", SetLastError = true, CharSet = CharSet.Auto)]
         public static extern bool SystemParametersInfo(uint uiAction, uint uiParam, string pvParam, uint fWinIni);
 
         private static IntPtr workerw = IntPtr.Zero;
@@ -55,7 +55,11 @@ namespace LuminaAnimator
                 return true;
             }), IntPtr.Zero);
 
-            if (workerw == IntPtr.Zero) return;
+            if (workerw == IntPtr.Zero) 
+            {
+                SetFinalAndExit(newWall);
+                return;
+            }
 
             AnimatorApp app = new AnimatorApp();
             Window win = new Window
@@ -85,7 +89,11 @@ namespace LuminaAnimator
                 grid.Children.Add(newImg);
             } catch {}
 
-            if (newImg == null) return;
+            if (newImg == null) 
+            {
+                SetFinalAndExit(newWall);
+                return;
+            }
 
             if (style.ToLower() == "circle")
             {
