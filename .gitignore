@@ -9,3 +9,12 @@ Images/app_temp.png
 # .NET build artifacts
 core/bin/
 core/obj/
+
+# Local publish/build artifacts
+publish_out/
+release_package/
+core/LuminaAnimator.exe
+core/LuminaAnimator.dll
+core/LuminaAnimator.pdb
+core/LuminaAnimator.deps.json
+core/LuminaAnimator.runtimeconfig.json
