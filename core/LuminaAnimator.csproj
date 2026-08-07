@@ -4,5 +4,6 @@
     <TargetFramework>net8.0-windows</TargetFramework>
     <UseWPF>true</UseWPF>
     <AssemblyName>LuminaAnimator</AssemblyName>
+    <StartupObject>LuminaAnimator.AnimatorApp</StartupObject>
   </PropertyGroup>
 </Project>

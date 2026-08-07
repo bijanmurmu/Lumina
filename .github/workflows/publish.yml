@@ -7,7 +7,7 @@ on:
 
 jobs:
   publish:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     permissions:
       contents: write
     
@@ -15,9 +15,23 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Build C# project
+        run: dotnet publish core/LuminaAnimator.csproj -c Release -r win-x64 -p:PublishSingleFile=true --self-contained false -o publish_out/
+
       - name: Create Zip Archive
         run: |
-          zip -r Lumina.zip . -x "*.git*" "*.github*"
+          mkdir release_package/core
+          if (Test-Path Images) { Copy-Item -Path Images -Destination release_package -Recurse }
+          Copy-Item -Path core/*.py -Destination release_package/core/
+          Copy-Item -Path publish_out/LuminaAnimator.exe -Destination release_package/core/
+          Copy-Item -Path main.py, plugin.json, README.md, LICENSE -Destination release_package/
+          Compress-Archive -Path release_package/* -DestinationPath Lumina.zip
+
 
       - name: Upload Release Asset
         uses: softprops/action-gh-release@v1
